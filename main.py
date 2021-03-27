@@ -13,8 +13,8 @@ def crack_zip(wordlist, zip_file, index):
             info = zip_ref.infolist()
             for word in wordlist:
                 try:
-                    z = zip_ref.read(info[0], pwd=word.strip())
-                except:
+                    x = zip_ref.read(info[0], pwd=word.strip())
+                except Exception as e:
                     continue
                 else:
                     print("[+] Password found:", word.decode().strip())
