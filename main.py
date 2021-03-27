@@ -6,6 +6,8 @@ import click
 import zipfile
 
 
+THREADS = 8
+
 def crack_zip(wordlist, zip_file, index):
     with open(zip_file, mode="rb",) as file_obj:
         buf = BytesIO(file_obj.read())
@@ -40,7 +42,7 @@ def hello(d, f):
     zip_file = f
 
     with open(wordlist, "rb") as wordlist:
-        x = list(chunker_list(list(wordlist), 8))
+        x = list(chunker_list(list(wordlist), THREADS))
         count = 1
         print(f'palabras totales: {n_words}')
         for wordli in x:
