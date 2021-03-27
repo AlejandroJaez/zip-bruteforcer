@@ -4,7 +4,6 @@ from io import BytesIO
 import multiprocessing
 import click
 import zipfile
-import tqdm
 
 
 def crack_zip(wordlist, zip_file, index):
@@ -12,7 +11,7 @@ def crack_zip(wordlist, zip_file, index):
         buf = BytesIO(file_obj.read())
         with zipfile.ZipFile(buf, 'r') as zip_ref:
             info = zip_ref.infolist()
-            for word in tqdm.tqdm(wordlist, total=len(wordlist), unit=" words", position=index):
+            for word in wordlist:
                 try:
                     z = zip_ref.read(info[0], pwd=word.strip())
                 except:
